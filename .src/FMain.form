@@ -1,0 +1,167 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,115,58)
+  Icon = Picture["POKEMON5.png"]
+  { PictureBoxPokemon1 PictureBox
+    MoveScaled(3,12,19,19)
+    Stretch = True
+  }
+  { ButtonAtaque11 Button BotonesAtaque
+    Name = "ButtonAtaque11"
+    MoveScaled(4,40,11.4286,4)
+    Font = Font["-2"]
+    Tag = "11"
+    Text = ("Ataque 1")
+  }
+  { ButtonAtaque12 Button BotonesAtaque
+    Name = "ButtonAtaque12"
+    MoveScaled(17,40,11.4286,4)
+    Font = Font["-2"]
+    Tag = "12"
+    Text = ("Ataque 2")
+  }
+  { ButtonAtaque13 Button BotonesAtaque
+    Name = "ButtonAtaque13"
+    MoveScaled(4,44,11.4286,4)
+    Font = Font["-2"]
+    Tag = "13"
+    Text = ("Ataque 3")
+  }
+  { ButtonAtaque14 Button BotonesAtaque
+    Name = "ButtonAtaque14"
+    MoveScaled(17,44,11.4286,4)
+    Font = Font["-2"]
+    Tag = "14"
+    Text = ("Ataque 4")
+  }
+  { PictureBox2 PictureBox
+    MoveScaled(26,20,7,9)
+    Picture = Picture["icon:/48/flag"]
+  }
+  { PictureBoxPokemon2 PictureBox
+    MoveScaled(37,12,19,19)
+    Stretch = True
+  }
+  { ButtonAtaque21 Button BotonesAtaque
+    Name = "ButtonAtaque21"
+    MoveScaled(37,40,11.4286,4)
+    Font = Font["-2"]
+    Tag = "21"
+    Text = ("Ataque 1")
+  }
+  { ButtonAtaque22 Button BotonesAtaque
+    Name = "ButtonAtaque22"
+    MoveScaled(49,40,11.4286,4)
+    Font = Font["-2"]
+    Tag = "22"
+    Text = ("Ataque 2")
+  }
+  { ButtonAtaque23 Button BotonesAtaque
+    Name = "ButtonAtaque23"
+    MoveScaled(37,44,11.4286,4)
+    Font = Font["-2"]
+    Tag = "23"
+    Text = ("Ataque 3")
+  }
+  { ButtonAtaque24 Button BotonesAtaque
+    Name = "ButtonAtaque24"
+    MoveScaled(49,44,11.4286,4)
+    Font = Font["-2"]
+    Tag = "24"
+    Text = ("Ataque 4")
+  }
+  { ButtonTurno1 Button
+    MoveScaled(4,1,17,6)
+    Text = ("Turno")
+    Picture = Picture["fechaAbajo.png"]
+  }
+  { ButtonTurno2 Button
+    MoveScaled(39,1,17,6)
+    Text = ("Turno")
+    Picture = Picture["fechaAbajo.png"]
+  }
+  { TextLabelnombre1 TextLabel
+    MoveScaled(4,8,16,4)
+    Alignment = Align.Center
+  }
+  { TextLabelnombre2 TextLabel
+    MoveScaled(39,8,16,4)
+    Alignment = Align.Center
+  }
+  { ProgressBar1 ProgressBar
+    MoveScaled(2,32,27,2)
+  }
+  { ProgressBar2 ProgressBar
+    MoveScaled(35,32,27,2)
+  }
+  { TextArea1 TextArea
+    MoveScaled(63,1,51,55)
+    Font = Font["-1"]
+  }
+  { ButtonJugar Button
+    MoveScaled(18,50,27,7)
+    Text = ("Empiezar la lucha...")
+    Picture = Picture["espadas cruzadas.png"]
+  }
+  { ButtonPocion11 Button BotonesPocion
+    Name = "ButtonPocion11"
+    MoveScaled(4,35,4,4)
+    Tag = "11"
+    Picture = Picture["pocion_peque.png"]
+  }
+  { ButtonPocion12 Button BotonesPocion
+    Name = "ButtonPocion12"
+    MoveScaled(9,35,4,4)
+    Tag = "12"
+    Picture = Picture["pocion_peque.png"]
+  }
+  { ButtonPocion13 Button BotonesPocion
+    Name = "ButtonPocion13"
+    MoveScaled(14,35,4,4)
+    Tag = "13"
+    Picture = Picture["pocion_peque.png"]
+  }
+  { ButtonPocion14 Button BotonesPocion
+    Name = "ButtonPocion14"
+    MoveScaled(19,35,4,4)
+    Tag = "14"
+    Picture = Picture["pocion_peque.png"]
+  }
+  { ButtonPocion15 Button BotonesPocion
+    Name = "ButtonPocion15"
+    MoveScaled(24,35,4,4)
+    Tag = "15"
+    Picture = Picture["pocion_peque.png"]
+  }
+  { ButtonPocion21 Button BotonesPocion
+    Name = "ButtonPocion21"
+    MoveScaled(36,35,4,4)
+    Tag = "21"
+    Picture = Picture["pocion_peque.png"]
+  }
+  { ButtonPocion22 Button BotonesPocion
+    Name = "ButtonPocion22"
+    MoveScaled(41,35,4,4)
+    Tag = "22"
+    Picture = Picture["pocion_peque.png"]
+  }
+  { ButtonPocion23 Button BotonesPocion
+    Name = "ButtonPocion23"
+    MoveScaled(46,35,4,4)
+    Tag = "23"
+    Picture = Picture["pocion_peque.png"]
+  }
+  { ButtonPocion24 Button BotonesPocion
+    Name = "ButtonPocion24"
+    MoveScaled(51,35,4,4)
+    Tag = "24"
+    Picture = Picture["pocion_peque.png"]
+  }
+  { ButtonPocion25 Button BotonesPocion
+    Name = "ButtonPocion25"
+    MoveScaled(56,35,4,4)
+    Tag = "25"
+    Picture = Picture["pocion_peque.png"]
+  }
+}

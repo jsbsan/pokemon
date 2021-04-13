@@ -1,0 +1,138 @@
+' Gambas class file
+
+Property nombre As String
+Private hnombre As String
+
+Private Function nombre_Read() As String
+  
+  Return hnombre
+  
+End
+
+Private Sub nombre_Write(Value As String)
+  
+  hnombre = value
+  
+End
+
+Property PuntosVida As Integer
+Private hpuntosvida As Integer
+
+Private Function PuntosVida_Read() As Integer
+  
+  Return hpuntosvida
+  
+End
+
+Private Sub PuntosVida_Write(Value As Integer)
+  
+  hpuntosvida = value
+  
+End
+
+Property Ataque As String[]
+Private hAtaque As String[]
+
+Private Function Ataque_Read() As String[]
+  
+  Return hAtaque
+  
+End
+
+Private Sub Ataque_Write(Value As String[])
+  
+  hAtaque = value
+  
+End
+
+Property PuntosDano As Integer[]
+Private hPuntosDano As Integer[]
+
+Private Function PuntosDano_Read() As Integer[]
+  
+  Return hPuntosDano
+  
+End
+
+Private Sub PuntosDano_Write(Value As Integer[])
+  
+  hPuntosDano = value
+  
+End
+
+Property PuntosPoder As Integer[]
+Private hPuntosPoder As Integer[]
+
+Private Function PuntosPoder_Read() As Integer[]
+  
+  Return hPuntosPoder
+  
+End
+
+Private Sub PuntosPoder_Write(Value As Integer[])
+  
+  hPuntosPoder = value
+  
+End
+
+Property pociones As Integer
+Private hpociones As Integer
+
+Private Function pociones_Read() As Integer
+  
+  Return hpociones
+  
+End
+
+Private Sub pociones_Write(Value As Integer)
+  
+  hpociones = value
+  
+End
+
+Property icono As String
+Private hicono As String
+
+Private Function icono_Read() As String
+  
+  Return hicono
+  
+End
+
+Private Sub icono_Write(Value As String)
+  
+  hicono = value
+  
+End
+
+Public Sub RealizarAtaque(numeroAtaque As Integer, pokeEnemigo As ClassPokemon, zonaComentarios As TextArea, barra As ProgressBar)
+  
+  Dim dano As Integer
+  
+  dano = azar(Me.PuntosDano[numeroAtaque - 1])
+  If Me.PuntosPoder[numeroAtaque - 1] <= 0 Then
+    zonaComentarios.text &= " No tienes puntos de poder para ese ataque...pierdes turno\n"
+    
+    Return
+  Endif
+  
+  Me.PuntosPoder[numeroAtaque - 1] -= 1
+  pokeEnemigo.PuntosVida -= dano
+  zonaComentarios.text &= Me.nombre & " uso " & Me.Ataque[numeroAtaque - 1] & "\n"
+  zonaComentarios.text &= " Le has quitado " & Str$(dano) & " puntos de vida a " & pokeEnemigo.nombre & "\n"
+  barra.value = pokeEnemigo.PuntosVida / 100
+  
+End
+
+Private Function azar(n As Integer) As Integer
+  
+  Return Int(Rnd(0, n + 1))
+  
+End
+
+Public Sub UsarPocion()
+  
+  Me.PuntosVida = 100
+  Me.pociones -= 1
+  
+End

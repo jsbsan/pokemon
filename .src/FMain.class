@@ -1,0 +1,204 @@
+' Gambas class file
+
+Private turno As Integer = 0 'inicialmente no se esta jugando
+Private ganador As Integer
+Private finjuego As Boolean
+
+Private ArrayPokemon As ClassPokemon[]
+
+Public Sub _new()
+  
+End
+
+Public Sub Form_Open()
+  
+  Randomize
+  Me.Center
+  definirPokemon()
+  
+End
+
+Public Sub datosAtaque()
+  'relleno botones de ataque...
+  
+  ButtonAtaque11.text = ArrayPokemon[0].Ataque[0] & " (" & ArrayPokemon[0].PuntosPoder[0] & ")"
+  ButtonAtaque12.text = ArrayPokemon[0].Ataque[1] & " (" & ArrayPokemon[0].PuntosPoder[1] & ")"
+  ButtonAtaque13.text = ArrayPokemon[0].Ataque[2] & " (" & ArrayPokemon[0].PuntosPoder[2] & ")"
+  ButtonAtaque14.text = ArrayPokemon[0].Ataque[3] & " (" & ArrayPokemon[0].PuntosPoder[3] & ")"
+  ButtonAtaque21.text = ArrayPokemon[1].Ataque[0] & " (" & ArrayPokemon[1].PuntosPoder[0] & ")"
+  ButtonAtaque22.text = ArrayPokemon[1].Ataque[1] & " (" & ArrayPokemon[1].PuntosPoder[1] & ")"
+  ButtonAtaque23.text = ArrayPokemon[1].Ataque[2] & " (" & ArrayPokemon[1].PuntosPoder[2] & ")"
+  ButtonAtaque24.text = ArrayPokemon[1].Ataque[3] & " (" & ArrayPokemon[1].PuntosPoder[3] & ")"
+  
+  'datos de vida
+  escribevida(ArrayPokemon[0], ProgressBar1)
+  escribevida(ArrayPokemon[1], ProgressBar2)
+  'datos de pocimas
+  ButtonPocion11.enabled = If(ArrayPokemon[0].pociones >= 1, True, False)
+  ButtonPocion12.enabled = If(ArrayPokemon[0].pociones >= 2, True, False)
+  ButtonPocion13.enabled = If(ArrayPokemon[0].pociones >= 3, True, False)
+  ButtonPocion14.enabled = If(ArrayPokemon[0].pociones >= 4, True, False)
+  ButtonPocion15.enabled = If(ArrayPokemon[0].pociones >= 5, True, False)
+  
+  ButtonPocion21.enabled = If(ArrayPokemon[1].pociones >= 1, True, False)
+  ButtonPocion22.enabled = If(ArrayPokemon[1].pociones >= 2, True, False)
+  ButtonPocion23.enabled = If(ArrayPokemon[1].pociones >= 3, True, False)
+  ButtonPocion24.enabled = If(ArrayPokemon[1].pociones >= 4, True, False)
+  ButtonPocion25.enabled = If(ArrayPokemon[1].pociones >= 5, True, False)
+  
+End
+
+Public Sub escribevida(poke As ClassPokemon, barra As ProgressBar)
+  
+  barra.value = poke.PuntosVida / 100
+  
+End
+
+Public Sub definirPokemon()
+  
+  Dim tmpPokemon As ClassPokemon
+  
+  ArrayPokemon = New ClassPokemon[]
+  '--------------------------- defino nuevo pokemon ------------------------------------
+  tmpPokemon = New ClassPokemon
+  
+  tmpPokemon.icono = "./POKEMON1.png"
+  tmpPokemon.nombre = "Pokemon Cañon"
+  tmpPokemon.PuntosVida = 100
+  
+  tmpPokemon.Ataque = ["ataque1", "ataque2", "ataque3", "ataque4"]
+  tmpPokemon.PuntosDano = [15, 32, 53, 21]
+  tmpPokemon.PuntosPoder = [2, 30, 10, 40]
+  tmpPokemon.pociones = 2
+  
+  ArrayPokemon.Add(tmpPokemon)
+  
+  '--------------------------- defino nuevo pokemon ------------------------------------
+  tmpPokemon = New ClassPokemon
+  
+  tmpPokemon.icono = "./POKEMON5.png"
+  tmpPokemon.nombre = "Pokemon drangón"
+  tmpPokemon.PuntosVida = 100
+  
+  tmpPokemon.Ataque = ["ataque1", "ataque2", "ataque3", "ataque4"]
+  tmpPokemon.PuntosDano = [24, 38, 73, 45]
+  tmpPokemon.PuntosPoder = [25, 30, 70, 15]
+  tmpPokemon.pociones = 3
+  
+  ArrayPokemon.Add(tmpPokemon)
+  
+  '-----------------------------------------------
+  'carga imagenes
+  PictureBoxPokemon1.Picture = Picture[ArrayPokemon[0].icono]
+  PictureBoxPokemon2.Picture = Picture[ArrayPokemon[1].icono]
+  'carga nombre
+  TextLabelnombre1.text = ArrayPokemon[0].nombre
+  TextLabelnombre2.text = ArrayPokemon[1].nombre
+  
+  'datos de ataque
+  datosAtaque()
+  
+End
+
+Public Sub ButtonJugar_Click()
+  
+  TextArea1.Text = " Empieza la lucha...\n"
+  
+  'inicio jugadores...
+  definirPokemon()
+  
+  turno = 1
+  finjuego = False
+  
+  While (1)
+    If turno = 2 Then
+      ButtonTurno1.Enabled = False
+      ButtonTurno2.Enabled = True
+      PictureBoxPokemon2.Enabled = True
+      PictureBoxPokemon1.Enabled = False
+      Wait 0.5
+    Endif
+    
+    If turno = 1 Then
+      ButtonTurno2.Enabled = False
+      ButtonTurno1.Enabled = True
+      PictureBoxPokemon2.Enabled = False
+      PictureBoxPokemon1.Enabled = True
+      Wait 0.5
+    Endif
+    
+    If finjuego = True Then
+      TextArea1.text &= " El ganador ha sido: " & ArrayPokemon[ganador].nombre & " \n"
+      
+      Break
+    Endif
+  Wend
+  
+  TextArea1.Text &= "¡¡¡ El combate ha terminado....!!! \n"
+  
+End
+
+' Ataques de botones usando grupos de botones y su propiedad tag para saber cual se ha pulsado
+
+Public Sub BotonesAtaque_Click()
+  
+  If turno = 1 Or turno = 2 Then
+    
+    If turno = 1 And Left$(Last.tag, 1) = "1" Then
+      
+      ArrayPokemon[0].RealizarAtaque(Val(Right$(Last.tag, 1)), ArrayPokemon[1], TextArea1, ProgressBar2)
+      'comprobar si ha llegado el fin del otro jugador
+      If ArrayPokemon[1].PuntosVida <= 0 Then
+        finjuego = True
+        ganador = 0
+        turno = 0
+      Else
+        turno = 2
+      Endif
+    Else
+      
+      If turno = 2 And Left$(Last.tag, 1) = "2" Then
+        
+        ArrayPokemon[1].RealizarAtaque(Val(Right$(Last.tag, 1)), ArrayPokemon[0], TextArea1, ProgressBar1)
+        'comprobar si ha llegado el fin del otro jugador
+        If ArrayPokemon[0].PuntosVida <= 0 Then
+          finjuego = True
+          ganador = 1
+          finjuego = True
+          turno = 0
+        Else
+          turno = 1
+        Endif
+      Endif
+      
+    Endif
+  Endif
+  
+  datosAtaque()
+  
+End
+
+Public Sub Form_Close()
+  
+  finjuego = True
+  Wait 1.5
+  
+End
+
+Public Sub BotonesPocion_Click()
+  
+  If turno = 1 And Left$(Last.tag, 1) = "1" And Last.enabled = True Then
+    ArrayPokemon[0].UsarPocion()
+    turno = 2
+    
+  Else
+    
+    If turno = 2 And Left$(Last.tag, 1) = "2" And Last.enabled = True Then
+      ArrayPokemon[1].UsarPocion()
+      turno = 1
+    Endif
+  Endif
+  
+  datosAtaque()
+  
+End

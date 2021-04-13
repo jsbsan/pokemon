@@ -1,0 +1,27 @@
+# Gambas Project File 3.0
+# Compiled with Gambas 3.5.4
+Title=Pokemon
+Startup=FMain
+Icon=Pokémon_Tsuri_Taikai_Icono.png
+Version=0.0.2
+Component=gb.image
+Component=gb.qt4
+Component=gb.form
+Component=gb.qt4.ext
+Description="Simple juego de turnos de lucha entre pokemons"
+Authors="Julio Sanchez Berro"
+TabSize=2
+Translate=1
+Language=es
+ExecPath=/home/minino/Documentos/pokemon.gambas
+Maintainer=Julio Sanchez Berro
+Address=jusabejusabe@hotmail.com
+Url=http://jsbsan.blogspot.com.es/
+License=General Public License
+PackageName=pokemon-0.0.2
+CreateEachDirectory=1
+Packager=1
+Systems=debian
+Menus=debian:"Games/Action"
+Categories=debian:"Game"
+Groups=debian:"games"
